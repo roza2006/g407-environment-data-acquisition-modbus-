@@ -40,13 +40,13 @@
 ### 系统架构
 
 ```mermaid
-flowchart LR
-    PMS["PMS5003<br/>激光颗粒物传感器"] -->|"USART6 · 9600 8N1"| MCU
-    BH["BH1750<br/>数字光照传感器"] -->|"软件 I2C · PF13/PF14"| MCU
-    MCU["STM32F407ZGT6<br/>Cortex-M4 168 MHz"] -->|"FSMC 16-bit"| LCD["4.3 英寸 TFT 480×272<br/>本地读数显示"]
-    MCU -->|"USART3 · 115200 8N1<br/>PA0 = DE/RE"| RS["RS485 收发器"]
-    RS -->|"A / B 差分总线"| HOST["上位机 / PLC<br/>数字孪生平台"]
-    HOST -->|"FC03 读保持寄存器"| RS
+flowchart TB
+    PMS["PMS5003 · 激光颗粒物传感器"] -- "USART6 · 9600 8N1" --> MCU["STM32F407ZGT6<br/>Cortex-M4F · 168 MHz"]
+    BH["BH1750 · 数字光照传感器"] -- "软件 I2C · PF13/PF14" --> MCU
+    MCU -- "FSMC · 16-bit" --> LCD["4.3 英寸 TFT<br/>480×272 本地读数"]
+    MCU -- "USART3 · 115200 8N1<br/>PA0 = DE/RE" --> RS["RS485 收发器"]
+    RS -- "A / B 差分总线" --> HOST["上位机 / PLC<br/>数字孪生平台"]
+    HOST -. "FC03 读保持寄存器" .-> RS
 ```
 
 **数据流**：`main()` 主循环里 `Modbus_RTU_Poll()` 不断检查是否有完整帧；同时 SysTick 每 1 s 置位一次刷新标志，主循环调用 `EnvSensor_Read()` 读 BH1750、触发一次 PMS 采集，更新结构体并刷新屏幕。Modbus 应答读取的正是这个结构体的最新快照，因此传感器刷新节奏不影响总线响应。
