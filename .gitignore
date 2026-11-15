@@ -1,48 +1,71 @@
-# Prerequisites
-*.d
+# ---- Keil MDK build outputs / 编译产物 ----
+Project/Obj/
+Project/List/
+Project/build.log
+Project/RTE/
+*.uvguix.*
+*.uvoptx.bak
+*.dep
+*.crf
+*.axf
+*.hex
+*.bin
+*.map
+*.lst
+*.sct
+*.lnp
+*.iex
+*.htm
+JLinkLog.txt
+JLinkSettings.ini
+*.bak
+*.ddk
+*.edk
+*.mpf
+*.mpj
+*.obj
+*.omf
+*.plg
+*.rpt
+*.tmp
+*.tra
+*.__i
+!Project/G407_EnvNode.uvprojx
 
-# Object files
+# ---- Object / library files / 目标文件 ----
 *.o
 *.ko
-*.obj
 *.elf
-
-# Linker output
 *.ilk
-*.map
 *.exp
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
 *.lib
 *.a
 *.la
 *.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
 *.so
 *.so.*
 *.dylib
+*.dll
 
-# Executables
+# ---- Executables / 可执行文件 ----
 *.exe
 *.out
 *.app
 *.i*86
 *.x86_64
-*.hex
 
-# Debug files
+# ---- Precompiled headers ----
+*.gch
+*.pch
+
+# ---- Debug info ----
 *.dSYM/
 *.su
 *.idb
 *.pdb
+*.dwo
 
-# Kernel Module Compile Results
+# ---- Kernel module artifacts ----
 *.mod*
 *.cmd
 .tmp_versions/
@@ -51,5 +74,15 @@ Module.symvers
 Mkfile.old
 dkms.conf
 
-# debug information files
-*.dwo
+# ---- Python ----
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# ---- Editors / OS ----
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini
+.DS_Store

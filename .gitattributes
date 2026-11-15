@@ -1,0 +1,11 @@
+# Keep text files as-is; only tell Git which files are binary.
+# 编码保持原样（部分驱动为 GBK），见 docs/known-issues.md 3.1。
+
+*.pdf  binary
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.ico  binary
+*.zip  binary
+*.hex  binary
+*.bin  binary
